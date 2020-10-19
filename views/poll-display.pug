@@ -1,0 +1,28 @@
+extends polls
+
+block poll-display
+    script(src='/javascripts/charts.js')
+    div(style="display:none" class="data") #{data}
+    h1= state
+    div(class="chart")
+        canvas(class="chart-canvas" id="poll-chart" width="400" height="400")
+    div(id="chart-slider")
+        div(style="display:none" id="poll-grade") D-
+    h2(class ="sub-header") #{state} Polls
+    div(class="table-responsive")
+        table(class="table table-striped table-sm")
+            thead
+                tr
+                    th Pollster
+                    th 538 Grade
+                    th Date
+                    th Biden
+                    th Trump
+            tbody(id="poll-table-body")
+                each poll in polls.reverse()
+                    tr
+                        td #{poll.pollster}
+                        td(class="row-grade") #{poll.grade}
+                        td #{poll.end_date}
+                        td #{poll.pct}
+                        td #{poll.pct}

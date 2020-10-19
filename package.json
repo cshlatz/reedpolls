@@ -1,0 +1,23 @@
+{
+  "name": "reed",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "cookie-parser": "~1.4.4",
+    "csvtojson": "^2.0.10",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jquery": "^3.5.1",
+    "jquery-ui": "^1.12.1",
+    "jquery-ui-dist": "^1.12.1",
+    "moment": "^2.29.1",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11",
+    "sqlite3": "^5.0.0"
+  }
+}

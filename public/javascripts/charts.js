@@ -21,17 +21,21 @@ function formatData(oldData, candidate) {
         if (!filterByGrade(oldData[i].grade)) {
             continue
         }
-        if (oldData[i].answer !== candidate) {
+        if (!oldData[i][candidate]) {
             continue;
         }
         if (parseInt(oldData[i].end_date) !== 2020) {
             continue;
         }
-        var currentData = oldData[i].pct;
-        newData.x.push(oldData[i].pct);
+        newData.x.push(oldData[i][candidate]);
         newData.y.push(new Date(oldData[i].end_date));
     }
+
     return newData;
+}
+
+function tooltip(question) {
+
 }
 
 $(document).ready(function () {
@@ -41,7 +45,7 @@ $(document).ready(function () {
     var chartData = JSON.parse(data[0].textContent);
     var myChart = new Chart(ctx, {
         type: 'bar',
-        responsive: true,
+        responsive: false,
         data: {
             labels: formatData(chartData, "Biden").y,
             datasets: [{
@@ -71,7 +75,7 @@ $(document).ready(function () {
                     borderWidth: 2
                 }
             },
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             scales: {
                 xAxes: [{
                     ticks: {

@@ -13,22 +13,27 @@ const polls = {
 
         const result = await dao.all(sql).then((data) => {
             data.forEach((res) => {
-                polls.push({
-                    question_id: res.question_id,
-                    answer: res.answer,
-                    pct: res.pct,
-                    pollster: res.pollster,
-                    end_date: moment(new Date(res.end_date), "DD/MM/YYYY").format('YYYY-MM-DD'),
-                    notes: res.notes,
-                    grade: res.fte_grade
-                });
+                let question = polls.find(poll => poll.question_id === res.question_id);
+                if (!question) {
+                    question = {
+                        question_id: res.question_id,
+                        [res.answer]: res.pct,
+                        pollster: res.pollster,
+                        end_date: moment(new Date(res.end_date), "DD/MM/YYYY").format('YYYY-MM-DD'),
+                        notes: res.notes,
+                        grade: res.fte_grade
+                    };
+                    polls.push(question);
+                } else {
+                    question[res.answer] = res.pct;
+                }
             });
         });
 
         res.render('poll-display', {
             "polls": polls,
             data: JSON.stringify(polls),
-            state: req.params.state
+            state: state
         });
     }
 }

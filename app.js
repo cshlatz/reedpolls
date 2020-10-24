@@ -4,28 +4,37 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var pollsRouter = require('./routes/polls');
-
 var app = express();
 
+const MODULE_PATH = './application/modules/';
+
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, './application/views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Static paths
+app.use('/app', express.static(__dirname + '/application/modules/'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/data', express.static(__dirname + '/data/'));
+
+// Third party libraries
 app.use('/moment', express.static(__dirname + '/node_modules/moment/dist/'));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/jquery-ui-dist', express.static(__dirname + '/node_modules/jquery-ui-dist/'));
 app.use('/chart.js', express.static(__dirname + '/node_modules/chart.js/dist/'));
-app.use('/data', express.static(__dirname + '/data/'));
 
+// Index routing
+var indexRouter = require('./application/routes/index');
 app.use('/', indexRouter);
-app.use('/polls/', pollsRouter);
+
+// Register modules
+var polls = require(MODULE_PATH + 'polls/polls')
+app.use('/polls/', polls)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

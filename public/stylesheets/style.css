@@ -40,3 +40,7 @@ a {
 #chart-slider {
     margin: 2em auto;
 }
+
+.table-header {
+    width: 100%;
+}

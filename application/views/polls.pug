@@ -4,7 +4,7 @@ block main
     script(src='/javascripts/charts.js')
     div(style="display:none" class="data") #{data}
     div(class="polls-container container-sm")
-        div(class="row")
+        div(class="row justify-content-center")
             h1= state
         div(class="row justify-content-center")
             div(class="canvas-container col")
@@ -14,7 +14,8 @@ block main
                 div(id="chart-slider")
             div(style="display:none" id="poll-grade") D-
         div(class="row")
-            h2(class ="sub-header") #{state} Polls
+            div(class="table-header justify-content-center row")
+                h2(class ="sub-header justify-content-center") #{state} Polls
             div(class="table-responsive")
                 table(class="table table-striped table-sm")
                     thead

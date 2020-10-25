@@ -30,7 +30,7 @@ const PollsController = {
             });
         });
 
-        res.render('polls/poll-display', {
+        res.render('polls', {
             "polls": polls,
             data: JSON.stringify(polls),
             state: state

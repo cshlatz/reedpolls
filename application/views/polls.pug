@@ -1,15 +1,17 @@
-extends polls
+extends index
 
-block poll-display
+block main
     script(src='/javascripts/charts.js')
     div(style="display:none" class="data") #{data}
-    div(class="container")
-        h1= state
+    div(class="polls-container container-sm")
+        div(class="row")
+            h1= state
         div(class="row justify-content-center")
-            div
+            div(class="canvas-container col")
                 canvas(class="chart-canvas" id="poll-chart" height=400 width=600 style="width:100%;")
-        div(class="row justify-content-center")
-            div(id="chart-slider")
+        div(class="row")
+            div(class="col chart-slider-container")
+                div(id="chart-slider")
             div(style="display:none" id="poll-grade") D-
         div(class="row")
             h2(class ="sub-header") #{state} Polls

@@ -1,3 +1,7 @@
+main {
+    background: #eee;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -7,7 +11,17 @@ a {
 }
 
 .main-content {
+    background: #eee;
     width: 100%;
+}
+
+.canvas-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.polls-container {
+    background: white;
 }
 
 #chart-canvas {
@@ -24,6 +38,5 @@ a {
 
 /* below is not necessary, just for style */
 #chart-slider {
-    width: 50%;
     margin: 2em auto;
 }

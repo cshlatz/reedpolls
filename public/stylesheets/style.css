@@ -16,16 +16,15 @@ a {
 }
 
 .canvas-container {
+    position: relative;
     margin-left: 20px;
     margin-right: 20px;
+    height: 40vh;
+    width: 80vw;
 }
 
 .polls-container {
     background: white;
-}
-
-#chart-canvas {
-    height: 420px;
 }
 
 #chart-slider label {

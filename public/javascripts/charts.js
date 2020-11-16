@@ -45,7 +45,8 @@ $(document).ready(function () {
     var chartData = JSON.parse(data[0].textContent);
     var myChart = new Chart(ctx, {
         type: 'bar',
-        responsive: false,
+        responsive: true,
+        maintainAspectRatio: true,
         data: {
             labels: formatData(chartData, "Biden").y,
             datasets: [{
@@ -75,7 +76,6 @@ $(document).ready(function () {
                     borderWidth: 2
                 }
             },
-            maintainAspectRatio: true,
             scales: {
                 xAxes: [{
                     ticks: {
@@ -91,6 +91,20 @@ $(document).ready(function () {
                     }
                 }]
             }
+        },
+        onResize: function(myChart, size) {
+            console.log("resizing");
+            var showTicks = (size.height < 340) ? false : true;
+            console.log(showTicks);
+            myChart.options = {
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            display: showTicks
+                        }
+                    }]
+                }
+            };
         }
     });
     
